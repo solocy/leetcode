@@ -1,0 +1,31 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        Stack<Integer> s = new Stack();
+        for (int i = 0; i < digits.length; i++) {
+            s.push(digits[i]);
+        }
+        int[] result;
+        if (s.peek() == 9) {
+            result = new int[s.size() + 1];
+        } else {
+            result = new int[s.size()];
+        }
+        int b = 1;
+        while (!s.isEmpty()) {
+            int a = s.pop();
+            if (a + b == 10) {
+                result[s.size()] = 0;
+            } else {
+                result[s.size()] = a + b ;
+                b = 0;
+            }
+        }
+        return result;
+    }
+}
+
+//total_testcases:111
+//total_correct:92
+//input_formatted:[9]
+//expected_output:[1,0]
+//code_output:[0,0]

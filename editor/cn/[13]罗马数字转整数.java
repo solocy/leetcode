@@ -79,97 +79,130 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    // 强行便利便利不可取
+    // 看看人家的解法
     public int romanToInt(String s) {
-        int size = s.length();
+        int x = num(s.charAt(0));
         int sum = 0;
-        for (int i = 0; i < size; ) {
-            int num = 0;
-            if (s.charAt(i) == 'I') {
-                while (i < size) {
-                    if (s.charAt(i) == 'V') {
-                        num = 4 * 1;
-                    } else if (s.charAt(i) == 'X') {
-                        num = 9 * 1;
-                    } else if (s.charAt(i) == 'I') {
-                        num += 1 * 1;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'V') {
-                while (i < size) {
-                    if (s.charAt(i) == 'V') {
-                        num = 5 * 1;
-                    } else if (s.charAt(i) == 'I') {
-                        num += 1 * 1;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'X') {
-                while (i < size) {
-                    if (s.charAt(i) == 'L') {
-                        num = 4 * 10;
-                    } else if (s.charAt(i) == 'C') {
-                        num = 9 * 10;
-                    } else if (s.charAt(i) == 'X') {
-                        num += 1 * 10;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'L') {
-                while (i < size) {
-                    if (s.charAt(i) == 'L') {
-                        num = 50 * 1;
-                    } else if (s.charAt(i) == 'X') {
-                        num += 1 * 10;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'C') {
-                while (i < size) {
-                    if (s.charAt(i) == 'D') {
-                        num = 4 * 100;
-                    } else if (s.charAt(i) == 'M') {
-                        num = 9 * 100;
-                    } else if (s.charAt(i) == 'C') {
-                        num += 1 * 100;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'D') {
-                while (i < size) {
-                    if (s.charAt(i) == 'D') {
-                        num = 500 * 1;
-                    } else if (s.charAt(i) == 'C') {
-                        num += 1 * 100;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
-            } else if (s.charAt(i) == 'M') {
-                while (i < size) {
-                    if (s.charAt(i) == 'M') {
-                        num += 1 * 1000;
-                    } else {
-                        break;
-                    }
-                    i++;
-                }
+        for (int i = 1; i < s.length(); i++) {
+            int y = num(s.charAt(i));
+            if (x <y) {
+                sum -=x;
+            } else {
+                sum +=x;
             }
-            sum += num;
+            x=y;
         }
+        sum +=x;
         return sum;
     }
+
+    int num(char c) {
+        switch (c) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 1000;
+        }
+    }
+    
+
+
+
+    // 强行遍历不可取
+//    public int romanToInt(String s) {
+//        int size = s.length();
+//        int sum = 0;
+//        for (int i = 0; i < size; ) {
+//            int num = 0;
+//            if (s.charAt(i) == 'I') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'V') {
+//                        num = 4 * 1;
+//                    } else if (s.charAt(i) == 'X') {
+//                        num = 9 * 1;
+//                    } else if (s.charAt(i) == 'I') {
+//                        num += 1 * 1;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'V') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'V') {
+//                        num = 5 * 1;
+//                    } else if (s.charAt(i) == 'I') {
+//                        num += 1 * 1;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'X') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'L') {
+//                        num = 4 * 10;
+//                    } else if (s.charAt(i) == 'C') {
+//                        num = 9 * 10;
+//                    } else if (s.charAt(i) == 'X') {
+//                        num += 1 * 10;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'L') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'L') {
+//                        num = 50 * 1;
+//                    } else if (s.charAt(i) == 'X') {
+//                        num += 1 * 10;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'C') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'D') {
+//                        num = 4 * 100;
+//                    } else if (s.charAt(i) == 'M') {
+//                        num = 9 * 100;
+//                    } else if (s.charAt(i) == 'C') {
+//                        num += 1 * 100;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'D') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'D') {
+//                        num = 500 * 1;
+//                    } else if (s.charAt(i) == 'C') {
+//                        num += 1 * 100;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            } else if (s.charAt(i) == 'M') {
+//                while (i < size) {
+//                    if (s.charAt(i) == 'M') {
+//                        num += 1 * 1000;
+//                    } else {
+//                        break;
+//                    }
+//                    i++;
+//                }
+//            }
+//            sum += num;
+//        }
+//        return sum;
+//    }
 }
 //leetcode submit region end(Prohibit modification and deletion)

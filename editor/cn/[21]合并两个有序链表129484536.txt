@@ -1,0 +1,39 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        // 定义一个新的链表作为结果
+        ListNode result = new ListNode(-1);
+        // 定义一个临时链表作为遍历的指针
+        ListNode tmp = result;
+        // 当两个链表中有一方遍历完，结束循环
+        while(l1 != null && l2 != null) {
+            //根据大小链接下一个节点
+            if(l1.val < l2.val) {
+                tmp.next = l1;
+                l1 = l1.next;
+            }else {
+                tmp.next = l2;
+                l2 = l2.next;
+            }
+            tmp = tmp.next;
+        }
+        // 最后判断为空的链表，链接上另一个非空链表
+        if(l1 == null) {
+            tmp.next = l2;
+        } else{
+            tmp.next = l1;
+        }
+        return result.next;
+    }
+}
+//runtime:0 ms
+//memory:38.1 MB
